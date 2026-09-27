@@ -1,4 +1,4 @@
-"""Put the demo site back to the state DEMO_EN.md assumes.
+"""Put the demo site back to the state `lifegence_i18n.setup.demo` creates.
 
 Run before a demo, from the bench directory. This file sits outside the Python package,
 so it is loaded into the console rather than imported:

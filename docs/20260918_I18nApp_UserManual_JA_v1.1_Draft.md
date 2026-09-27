@@ -1,8 +1,8 @@
 # 多言語管理アプリ 利用マニュアル
 
-**lifegence_i18n v1.0 ／ 2026年9月18日 ／ v1.1 ／ 社外秘（CONFIDENTIAL）**
+**lifegence_i18n 0.1.0 ／ 2026年9月18日**
 
-対象：Frappe / ERPNext version-15（納品先）および version-16 ／ 英語版：`20260918_I18nApp_UserManual_EN_v1.1_Draft`（作成予定）
+対象：Frappe / ERPNext version-15 および version-16 ／ 英語版は作成予定
 
 > v1.1 の変更点: 4 つ目の探し方「実画面の巡回」（5-1 節）、網羅率レポートの文字列クラス別表示、新しいレポート「除外の一覧」、アプリ同梱 CSV の書き出し先の追加（11 章）。
 >

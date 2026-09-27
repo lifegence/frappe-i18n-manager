@@ -269,7 +269,7 @@ class TestLabelValue(unittest.TestCase):
 	def test_hash_names_and_page_values_are_split_off(self):
 		self.assertEqual(label_part("ID: 0ru39kd5oj", set()), "ID")
 		self.assertEqual(label_part("ID: abcdefghij", set()), "ID")  # a hash without digits is still a hash
-		self.assertEqual(label_part("Company: Made in Z", {"Made in Z"}), "Company")
+		self.assertEqual(label_part("Company: Acme Trading", {"Acme Trading"}), "Company")
 		self.assertEqual(label_part("Note: keep this", set()), "Note: keep this")
 		self.assertEqual(label_part("Status: OK", set()), "Status: OK")  # a short value is not a hash
 		self.assertEqual(label_part("Total: 1,234.00", set()), "Total")

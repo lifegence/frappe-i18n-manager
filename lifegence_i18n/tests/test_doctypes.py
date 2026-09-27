@@ -1,4 +1,4 @@
-"""The DocTypes' own rules (plan WP-3, "DocType 単体"): what a Locale
+"""The DocTypes' own rules: what a Locale
 Profile derives on save, what a Translation Entry refuses, how scans order
 locales, and how a role name on the source route is told from a label."""
 
