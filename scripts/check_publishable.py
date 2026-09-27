@@ -58,6 +58,9 @@ MARKINGS = (
 	"検収",
 	"見積書",
 	"受託者",
+	# A proprietary notice contradicts the licence this repository is under.
+	"All rights reserved",
+	"専有物",
 	# A work-package number answers to a project plan, not to a reader.
 	r"\bWP-\d+\b",
 )
