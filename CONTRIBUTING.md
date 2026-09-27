@@ -53,6 +53,12 @@ repository, its history, its tests, its fixtures, or its logs:
 Use synthetic data. `lifegence_i18n/tests/` shows the shape: a `zz-TEST`
 locale, a `zz_app` application, and source strings prefixed `Zzz`.
 
+Nor does a document written for someone else. If a file is marked confidential,
+addressed to a person, or numbered against a project plan, it answers to a
+contract rather than to whoever finds it here, and it belongs somewhere private.
+`scripts/check_publishable.py` refuses both — a name where it does not belong,
+and a marking that contradicts the repository it sits in — and runs in CI.
+
 ## Translations of the app's own interface
 
 The app ships its own Japanese in `lifegence_i18n/translations/ja.csv`.
