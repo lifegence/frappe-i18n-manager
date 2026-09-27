@@ -311,5 +311,6 @@ through Frappe's public interfaces.
 | [Handover notes](docs/20260918_I18nApp_Handover_JA_v1.0_Draft.md) (日本語) | Maintainers — design decisions, known limits, open items |
 | [Test Procedure](docs/20260813_I18nApp_TestProcedure_EN_v1.0_Draft.md) ([日本語](docs/20260813_I18nApp_TestProcedure_JA_v1.0_Draft.md)) | Acceptance |
 | [Demo Script](docs/DEMO_EN.md) ([日本語](docs/DEMO_JA.md)) | Presenting |
+| [Four languages on one site](docs/20260927_CoverageAcrossLocales_EN.md) ([日本語](docs/20260927_CoverageAcrossLocales_JA.md)) | What a measurement looks like |
 
 `.docx` (A4) versions of the v1.0 documents sit beside the Markdown.
