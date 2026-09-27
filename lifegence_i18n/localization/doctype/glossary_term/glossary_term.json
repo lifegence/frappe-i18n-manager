@@ -1,0 +1,121 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-08-13 07:31:03.122160",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "locale",
+  "source_term",
+  "translated_term",
+  "do_not_translate",
+  "glossary_col",
+  "match_type",
+  "case_sensitive",
+  "enforce",
+  "glossary_detail",
+  "forbidden_terms",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "locale",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Locale",
+   "options": "Locale Profile",
+   "reqd": 1
+  },
+  {
+   "fieldname": "source_term",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Term (Source)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "translated_term",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Translated Term"
+  },
+  {
+   "default": "0",
+   "description": "Brand names and the like, which must appear unchanged.",
+   "fieldname": "do_not_translate",
+   "fieldtype": "Check",
+   "label": "Do Not Translate"
+  },
+  {
+   "fieldname": "glossary_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Word",
+   "fieldname": "match_type",
+   "fieldtype": "Select",
+   "label": "Term Match Type",
+   "options": "Word\nSubstring"
+  },
+  {
+   "default": "1",
+   "fieldname": "case_sensitive",
+   "fieldtype": "Check",
+   "label": "Case Sensitive"
+  },
+  {
+   "default": "1",
+   "fieldname": "enforce",
+   "fieldtype": "Check",
+   "label": "Report Violations as Issues"
+  },
+  {
+   "fieldname": "glossary_detail",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "forbidden_terms",
+   "fieldtype": "Small Text",
+   "label": "Renderings Not to Use (one per line)"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-08-13 09:10:18.731430",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Glossary Term",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "source_term"
+}

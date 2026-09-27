@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-13 07:30:43.938659",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "app_name",
+  "total_strings",
+  "translated_strings",
+  "untranslated_strings",
+  "coverage"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "app_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "App",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "total_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "translated_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Translated",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "untranslated_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Untranslated",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "coverage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Coverage",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-13 09:10:18.538109",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Locale Target App",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

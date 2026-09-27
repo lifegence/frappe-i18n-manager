@@ -1,0 +1,30 @@
+{
+ "add_total_row": 1,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-09-18 10:53:33.129945",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-09-18 22:59:04.002507",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Localization Exclusions",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select\n\tte.locale as \"Locale:Link/Locale Profile:90\",\n\tte.app as \"App::140\",\n\tcoalesce(nullif(te.na_reason, ''), 'No reason recorded') as \"Reason::170\",\n\tcoalesce(nullif(te.na_rule, ''), '') as \"Rule::150\",\n\tcount(*) as \"Strings:Int:80\",\n\tmin(te.source_text) as \"Example::300\"\nfrom `tabTranslation Entry` te\nwhere te.status = 'Not Applicable'\ngroup by te.locale, te.app, coalesce(nullif(te.na_reason, ''), 'No reason recorded'), coalesce(nullif(te.na_rule, ''), '')\norder by te.locale asc, count(*) desc, te.app asc",
+ "ref_doctype": "Translation Entry",
+ "report_name": "Localization Exclusions",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0,
+ "disable_prepared_report": 0
+}

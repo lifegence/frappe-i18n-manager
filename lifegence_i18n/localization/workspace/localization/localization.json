@@ -1,0 +1,194 @@
+{
+ "app": "lifegence_i18n",
+ "charts": [],
+ "content": "[{\"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Localization</b></span>\", \"col\": 12}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Ledger Rows\", \"col\": 4}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Untranslated Strings\", \"col\": 4}}, {\"type\": \"number_card\", \"data\": {\"number_card_name\": \"Open Issues\", \"col\": 4}}, {\"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Locales\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Translation Ledger\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Issues\", \"col\": 3}}, {\"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Glossary\", \"col\": 3}}, {\"type\": \"spacer\", \"data\": {\"col\": 12}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Scanning\", \"col\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Management\", \"col\": 4}}, {\"type\": \"card\", \"data\": {\"card_name\": \"Reports\", \"col\": 4}}]",
+ "creation": "2026-08-13 07:56:44.868766",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "hide_custom": 0,
+ "icon": "text",
+ "idx": 0,
+ "indicator_color": "blue",
+ "is_hidden": 0,
+ "label": "Localization",
+ "link_type": "DocType",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scanning",
+   "link_count": 2,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Scans",
+   "link_count": 0,
+   "link_to": "Translation Scan",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Issues",
+   "link_count": 0,
+   "link_to": "Translation Issue",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Management",
+   "link_count": 4,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Locales",
+   "link_count": 0,
+   "link_to": "Locale Profile",
+   "link_type": "DocType",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Translation Ledger",
+   "link_count": 0,
+   "link_to": "Translation Entry",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Glossary",
+   "link_count": 0,
+   "link_to": "Glossary Term",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Settings",
+   "link_count": 0,
+   "link_to": "I18n Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Reports",
+   "link_count": 3,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "dependencies": "Translation Entry",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Coverage",
+   "link_count": 0,
+   "link_to": "Localization Coverage",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Translation Entry",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Exclusions",
+   "link_count": 0,
+   "link_to": "Localization Exclusions",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "dependencies": "Translation Entry",
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Delivery Verification",
+   "link_count": 0,
+   "link_to": "Localization Delivery",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-09-18 15:32:03.698815",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Localization",
+ "number_cards": [
+  {
+   "label": "Ledger Rows",
+   "number_card_name": "Ledger Rows"
+  },
+  {
+   "label": "Untranslated Strings",
+   "number_card_name": "Untranslated Strings"
+  },
+  {
+   "label": "Open Issues",
+   "number_card_name": "Open Issues"
+  }
+ ],
+ "owner": "Administrator",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 0.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "doc_view": "",
+   "label": "Locales",
+   "link_to": "Locale Profile",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "",
+   "label": "Translation Ledger",
+   "link_to": "Translation Entry",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "doc_view": "",
+   "label": "Issues",
+   "link_to": "Translation Issue",
+   "stats_filter": "{\"status\": \"Open\"}",
+   "type": "DocType"
+  },
+  {
+   "color": "Green",
+   "doc_view": "",
+   "label": "Glossary",
+   "link_to": "Glossary Term",
+   "type": "DocType"
+  }
+ ],
+ "title": "Localization",
+ "type": "Workspace"
+}

@@ -1,0 +1,367 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:locale_code",
+ "creation": "2026-08-13 07:31:02.665969",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "identity_section",
+  "locale_code",
+  "locale_label",
+  "enabled",
+  "identity_col",
+  "country",
+  "language",
+  "currency",
+  "uses_latin_script",
+  "fallback_locale",
+  "format_section",
+  "date_format",
+  "time_format",
+  "first_day_of_week",
+  "format_col",
+  "number_format",
+  "float_precision",
+  "time_zone",
+  "scan_section",
+  "scan_source",
+  "scan_database",
+  "scan_master_data",
+  "scan_roles",
+  "scan_messages",
+  "scan_screens",
+  "scan_col",
+  "target_apps",
+  "result_section",
+  "coverage",
+  "own_coverage",
+  "total_strings",
+  "translated_strings",
+  "own_translated_strings",
+  "delivery_section",
+  "delivery_state",
+  "approved_strings",
+  "delivery_col",
+  "live_strings",
+  "pending_strings",
+  "last_verified_on",
+  "untranslated_strings",
+  "result_col",
+  "open_issues",
+  "last_scan",
+  "last_scanned_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "identity_section",
+   "fieldtype": "Section Break",
+   "label": "Locale"
+  },
+  {
+   "description": "BCP-47 form. For example ja-JP / zh-HK / zh-TW / hr-HR",
+   "fieldname": "locale_code",
+   "fieldtype": "Data",
+   "label": "Locale Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "locale_label",
+   "fieldtype": "Data",
+   "label": "Locale Name",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "identity_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Link",
+   "label": "Country",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "language",
+   "fieldtype": "Link",
+   "label": "Language",
+   "options": "Language",
+   "reqd": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "description": "Consulted when this locale has no translation of its own. For example zh-HK falls back to zh-TW.",
+   "fieldname": "fallback_locale",
+   "fieldtype": "Link",
+   "label": "Fallback Locale",
+   "options": "Locale Profile"
+  },
+  {
+   "fieldname": "format_section",
+   "fieldtype": "Section Break",
+   "label": "Display Formats"
+  },
+  {
+   "default": "yyyy-mm-dd",
+   "fieldname": "date_format",
+   "fieldtype": "Select",
+   "label": "Date Format",
+   "options": "yyyy-mm-dd\ndd-mm-yyyy\nmm-dd-yyyy\ndd/mm/yyyy\nmm/dd/yyyy\ndd.mm.yyyy"
+  },
+  {
+   "default": "HH:mm:ss",
+   "fieldname": "time_format",
+   "fieldtype": "Select",
+   "label": "Time Format",
+   "options": "HH:mm:ss\nHH:mm"
+  },
+  {
+   "default": "Monday",
+   "fieldname": "first_day_of_week",
+   "fieldtype": "Select",
+   "label": "First Day of Week",
+   "options": "Sunday\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday"
+  },
+  {
+   "fieldname": "format_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "#,###.##",
+   "fieldname": "number_format",
+   "fieldtype": "Select",
+   "label": "Number Format",
+   "options": "#,###.##\n#.###,##\n# ###.##\n# ###,##\n#'###.##\n#, ###.##\n#,##,###.##\n#,###\n#.###"
+  },
+  {
+   "default": "2",
+   "fieldname": "float_precision",
+   "fieldtype": "Int",
+   "label": "Decimal Places"
+  },
+  {
+   "fieldname": "time_zone",
+   "fieldtype": "Data",
+   "label": "Time Zone"
+  },
+  {
+   "fieldname": "scan_section",
+   "fieldtype": "Section Break",
+   "label": "What to Measure"
+  },
+  {
+   "default": "1",
+   "fieldname": "scan_source",
+   "fieldtype": "Check",
+   "label": "Scan Source Code"
+  },
+  {
+   "default": "1",
+   "fieldname": "scan_database",
+   "fieldtype": "Check",
+   "label": "Scan Database"
+  },
+  {
+   "default": "0",
+   "description": "Item Group, Customer Group, Territory, UOM, Designation and the like. Customer data rather than interface text — off by default and reported separately.",
+   "fieldname": "scan_master_data",
+   "fieldtype": "Check",
+   "label": "Scan Master Data"
+  },
+  {
+   "default": "0",
+   "description": "Frappe's own extractor already emits role names from DocPerm, so measuring them twice distorts coverage.",
+   "fieldname": "scan_roles",
+   "fieldtype": "Check",
+   "label": "Scan Role Names"
+  },
+  {
+   "default": "1",
+   "fieldname": "scan_messages",
+   "fieldtype": "Check",
+   "label": "Detect Messages Without a Translation Function"
+  },
+  {
+   "default": "0",
+   "fieldname": "scan_screens",
+   "fieldtype": "Check",
+   "label": "Rendered Screens (browser crawl)",
+   "description": "Log in with a browser and read what is actually on the screen. Needs Playwright on this server and the crawl settings in I18n Settings."
+  },
+  {
+   "fieldname": "scan_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Every app installed on the site is measured when this is empty.",
+   "fieldname": "target_apps",
+   "fieldtype": "Table",
+   "label": "Target Apps",
+   "options": "Locale Target App"
+  },
+  {
+   "fieldname": "result_section",
+   "fieldtype": "Section Break",
+   "label": "Measurement Routes"
+  },
+  {
+   "fieldname": "coverage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Coverage on Screen",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_strings",
+   "fieldtype": "Int",
+   "label": "Total Strings",
+   "read_only": 1
+  },
+  {
+   "fieldname": "translated_strings",
+   "fieldtype": "Int",
+   "label": "Translated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "untranslated_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Untranslated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "result_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "open_issues",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Open Issues",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_scanned_on",
+   "fieldtype": "Datetime",
+   "label": "Last Scanned On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_scan",
+   "fieldtype": "Link",
+   "label": "Last Scan",
+   "options": "Translation Scan",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "Derived from the language code. The Latin residue check is skipped for these languages.",
+   "fieldname": "uses_latin_script",
+   "fieldtype": "Check",
+   "label": "Written in Latin Script",
+   "read_only": 1
+  },
+  {
+   "description": "This locale's own translations, excluding anything inherited from the parent language.",
+   "fieldname": "own_coverage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Own Coverage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "own_translated_strings",
+   "fieldtype": "Int",
+   "label": "Own Translations",
+   "read_only": 1
+  },
+  {
+   "fieldname": "delivery_section",
+   "fieldtype": "Section Break",
+   "label": "Delivery Verification"
+  },
+  {
+   "fieldname": "delivery_state",
+   "fieldtype": "Select",
+   "label": "Delivery State",
+   "options": "\nLive\nCache Stale\nNot Deployed\nOverridden\nUnknown",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_strings",
+   "fieldtype": "Int",
+   "label": "Approved",
+   "read_only": 1
+  },
+  {
+   "fieldname": "delivery_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "live_strings",
+   "fieldtype": "Int",
+   "label": "Live on This Site",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pending_strings",
+   "fieldtype": "Int",
+   "label": "Not Yet Live",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_verified_on",
+   "fieldtype": "Datetime",
+   "label": "Last Verified On",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-01 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Locale Profile",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "locale_label",
+ "track_changes": 1
+}

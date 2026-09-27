@@ -1,0 +1,145 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-08-13 07:31:03.750826",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "locale",
+  "issue_type",
+  "severity",
+  "status",
+  "issue_col",
+  "translation_entry",
+  "scan",
+  "app",
+  "issue_detail",
+  "source_text",
+  "translated_text",
+  "detail",
+  "location"
+ ],
+ "fields": [
+  {
+   "fieldname": "locale",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Locale",
+   "options": "Locale Profile",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "issue_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Type",
+   "options": "Untranslated\nEmpty Translation\nPlaceholder Mismatch\nHTML Mismatch\nGlossary Violation\nForbidden Term\nLatin Residue\nUnreachable Whitespace\nNot Wrapped",
+   "reqd": 1
+  },
+  {
+   "default": "Medium",
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Severity",
+   "options": "High\nMedium\nLow"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Open\nIgnored\nResolved"
+  },
+  {
+   "fieldname": "issue_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "translation_entry",
+   "fieldtype": "Link",
+   "label": "Translation Entry",
+   "options": "Translation Entry"
+  },
+  {
+   "fieldname": "scan",
+   "fieldtype": "Link",
+   "label": "Found By",
+   "options": "Translation Scan",
+   "read_only": 1
+  },
+  {
+   "fieldname": "app",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "App"
+  },
+  {
+   "fieldname": "issue_detail",
+   "fieldtype": "Section Break",
+   "label": "Detail"
+  },
+  {
+   "fieldname": "source_text",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Source Text",
+   "read_only": 1
+  },
+  {
+   "fieldname": "translated_text",
+   "fieldtype": "Small Text",
+   "label": "Translation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "detail",
+   "fieldtype": "Small Text",
+   "label": "Finding",
+   "read_only": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Where It Appears",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-19 23:20:20.530579",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Translation Issue",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "source_text"
+}

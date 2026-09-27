@@ -1,0 +1,264 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "hash",
+ "creation": "2026-08-13 07:31:03.317049",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "entry_section",
+  "locale",
+  "source_text",
+  "translated_text",
+  "context",
+  "entry_col",
+  "status",
+  "string_class",
+  "na_reason",
+  "na_rule",
+  "origin",
+  "translation_source",
+  "delivery_status",
+  "app",
+  "occurrences",
+  "location_section",
+  "source_path",
+  "line_no",
+  "location_col",
+  "reference_doctype",
+  "reference_name",
+  "reference_field",
+  "check_section",
+  "has_issues",
+  "issue_summary",
+  "check_col",
+  "upstream_translation",
+  "text_hash",
+  "last_seen_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "entry_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "locale",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Locale",
+   "options": "Locale Profile",
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "source_text",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Source Text",
+   "reqd": 1
+  },
+  {
+   "fieldname": "translated_text",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Translation"
+  },
+  {
+   "fieldname": "context",
+   "fieldtype": "Data",
+   "label": "Translation Context"
+  },
+  {
+   "fieldname": "entry_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Untranslated",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Untranslated\nDraft\nReviewed\nApproved\nNot Applicable"
+  },
+  {
+   "default": "UI Text",
+   "description": "Only UI Text counts towards the headline coverage figure.",
+   "fieldname": "string_class",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "String Class",
+   "options": "UI Text\nMaster Data\nRole Name",
+   "read_only": 1
+  },
+  {
+   "description": "Why this string is not a translation target. Set by an exclusion rule, or by hand as Manual.",
+   "fieldname": "na_reason",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Not Applicable Reason",
+   "options": "\nNaming Series\nAcronym or Code\nRole Name\nMaster Data\nBrand or Product Name\nDeveloper Note\nPlaceholder Only\nManual"
+  },
+  {
+   "fieldname": "na_rule",
+   "fieldtype": "Data",
+   "label": "Matched Rule",
+   "read_only": 1
+  },
+  {
+   "default": "Manual",
+   "fieldname": "origin",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Found In",
+   "options": "Source Code\nDatabase\nCode Message\nScreen\nManual"
+  },
+  {
+   "fieldname": "app",
+   "fieldtype": "Data",
+   "in_standard_filter": 1,
+   "label": "App",
+   "search_index": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "occurrences",
+   "fieldtype": "Int",
+   "label": "Occurrence Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "location_section",
+   "fieldtype": "Section Break",
+   "label": "Where It Appears"
+  },
+  {
+   "fieldname": "source_path",
+   "fieldtype": "Data",
+   "label": "Found At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "line_no",
+   "fieldtype": "Int",
+   "label": "Line",
+   "read_only": 1
+  },
+  {
+   "fieldname": "location_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "label": "Reference DocType",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_name",
+   "fieldtype": "Dynamic Link",
+   "label": "Reference Record",
+   "options": "reference_doctype",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reference_field",
+   "fieldtype": "Data",
+   "label": "Reference Field",
+   "read_only": 1
+  },
+  {
+   "fieldname": "check_section",
+   "fieldtype": "Section Break",
+   "label": "Checks"
+  },
+  {
+   "default": "0",
+   "fieldname": "has_issues",
+   "fieldtype": "Check",
+   "label": "Has Issues",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issue_summary",
+   "fieldtype": "Small Text",
+   "label": "Finding Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "check_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "upstream_translation",
+   "fieldtype": "Small Text",
+   "label": "Currently on Screen",
+   "read_only": 1
+  },
+  {
+   "fieldname": "text_hash",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Hash",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "last_seen_on",
+   "fieldtype": "Datetime",
+   "label": "Last Seen On",
+   "read_only": 1
+  },
+  {
+   "description": "Own = belongs to this locale / Fallback = taken from the fallback locale / Inherited = Frappe inherited it from the parent language",
+   "fieldname": "translation_source",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Translation Source",
+   "options": "\nOwn\nFallback\nInherited",
+   "read_only": 1
+  },
+  {
+   "description": "Whether the approved translation has actually reached the running site.",
+   "fieldname": "delivery_status",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Delivery Verification State",
+   "options": "\nLive\nCache Stale\nNot Deployed\nOverridden",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-01 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Translation Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "source_text",
+ "track_changes": 1
+}

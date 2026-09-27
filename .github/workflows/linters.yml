@@ -1,0 +1,65 @@
+name: Linters
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linters-${{ github.event_name }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  no-customer-data:
+    name: No customer data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      # Reads every tracked file as bytes, and looks inside the zip-shaped ones.
+      # A text-only search once reported this repository clean while five .docx
+      # files still named the customer.
+      - run: python3 scripts/check_no_customer_data.py
+
+  ruff:
+    name: Ruff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install ruff
+      - run: ruff check .
+      - run: ruff format --check .
+
+  vulnerable-dependencies:
+    name: Vulnerable dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pip-audit
+      - run: pip-audit --desc on .
+
+  semgrep:
+    name: Semgrep
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      # The rules Frappe's own reviewers run over a marketplace submission.
+      - run: |
+          pip install semgrep
+          git clone --depth 1 https://github.com/frappe/semgrep-rules.git /tmp/semgrep-rules
+          semgrep --config /tmp/semgrep-rules/rules --error --metrics=off .

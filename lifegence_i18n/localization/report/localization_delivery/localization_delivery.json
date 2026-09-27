@@ -1,0 +1,29 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2026-09-01 09:00:00.000000",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letter_head": null,
+ "modified": "2026-09-01 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Localization Delivery",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "select\n\tte.locale as \"Locale:Link/Locale Profile:90\",\n\tte.app as \"App::140\",\n\tcoalesce(nullif(te.delivery_status, ''), 'Not Verified') as \"Delivery::110\",\n\tcount(*) as \"Strings:Int:80\",\n\tmin(te.source_text) as \"Example::300\"\nfrom `tabTranslation Entry` te\nwhere te.status in ('Approved', 'Reviewed')\n\tand te.translated_text is not null and te.translated_text != ''\ngroup by te.locale, te.app, te.delivery_status\norder by\n\tfield(coalesce(nullif(te.delivery_status, ''), 'Not Verified'),\n\t\t'Not Deployed', 'Overridden', 'Cache Stale', 'Not Verified', 'Live'),\n\tte.locale asc, te.app asc",
+ "ref_doctype": "Translation Entry",
+ "report_name": "Localization Delivery",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

@@ -1,0 +1,226 @@
+"0 = no limit. A site with 650 DocTypes has about 2,000 screens, at three seconds each.","0 = 上限なし。DocType が 650 あるサイトの画面は約 2,000 で、1 画面 3 秒ほどかかります。"
+A locale cannot fall back to itself,フォールバック先に自分自身は指定できません
+"A read-only user is recommended. Administrator is used when empty. The user needs read permission on the DocTypes of every target app: a screen it may not open is counted as not opened, not measured (324 of 400 with one read-only user). Any System Manager can read a stored password back, so give this user a password used for nothing else.",閲覧専用のユーザーを推奨します。空のときは Administrator を使います。このユーザーには、対象アプリの DocType の read 権限が必要です。開けない画面は「開けなかった」に数え、測定されません（閲覧専用ユーザー 1 人で 400 画面中 324 画面）。保存したパスワードは System Manager なら誰でも読み出せるため、他で使っていないパスワードにしてください。
+A row with the same source text and context already exists: {0},同じ原文とコンテキストの行がすでにあります: {0}
+Acronym or Code,略号・コード
+After Change,変更後
+Also write into the app's translations folder on this bench,このベンチ上のアプリの translations フォルダにも書き出す
+App Translation CSV,アプリ同梱 CSV
+Applied to the site,反映しました
+Applied {0} / skipped {1},反映 {0} 件 / 対象外 {1} 件
+Apply the approved translations to the site as Translation records. Continue?,承認済みの訳を Translation レコードとしてサイトに反映します。よろしいですか？
+Apply to Site,サイトへ反映
+Approve Drafts,下書きを承認
+Approve {0} draft translations so they can be applied to the site?,下書きの訳 {0} 件を承認して、サイトに反映できる状態にしますか？
+Approved {0},{0} 件を承認しました
+Apps with the Most Untranslated Strings,未訳の多いアプリ
+Auto Apply,自動適用
+BCP-47 form. For example ja-JP / zh-HK / zh-TW / hr-HR,BCP-47 形式。例 ja-JP / zh-HK / zh-TW / hr-HR
+"Brand names and the like, which must appear unchanged.",ブランド名など、原文のまま出すべき語
+"Brand names, units and abbreviations. Excluded from the Latin residue check.",ブランド名・単位・略号。訳文の英語残り検査から除外します
+Brand or Product Name,ブランド・製品名
+Bulk Term Change,用語の一括変更
+By App,アプリ別
+Cache Stale,キャッシュが古い
+Cache stale,キャッシュが古い
+Case Sensitive,大文字小文字を区別する
+Changed {0} rows,{0} 件を変更しました
+Check Impact,影響範囲を確認
+Checks,検査
+Class,クラス
+Code Message,コードメッセージ
+Completed Review Sheet,記入済みの CSV
+Consulted when this locale has no translation of its own. For example zh-HK falls back to zh-TW.,このロケール固有の訳が無いときに参照するロケール。例 zh-HK → zh-TW
+Coverage,網羅率
+Coverage on Screen,表示上の網羅率
+Crawl User,巡回用ユーザー
+Crawl User Password,巡回用ユーザーのパスワード
+Crawling another site is off. Set i18n_allow_remote_crawl in site_config.json to allow {0},他サイトの巡回は無効です。{0} を許可するには site_config.json に i18n_allow_remote_crawl を設定してください
+Create Missing Languages,未登録の言語を自動作成する
+Created language {0},言語 {0} を作成しました
+Current Translation,変更前
+Currently on Screen,現行の表示
+Database,データベース
+Database Route,データベース
+Decimal Places,小数桁数
+Delivery State,反映状態
+Delivery Verification,反映検証
+Delivery Verification State,反映検証の状態
+Delivery: {0},反映状況: {0}
+Derived from the language code. The Latin residue check is skipped for these languages.,言語コードから自動判定します。訳文の英字残り検査は、この値が立っている言語では行いません
+Detail,内容
+Detect Messages Without a Translation Function,翻訳関数の未適用を検出する
+Detection,検出の設定
+Developer Note,開発者向けメモ
+Display Formats,表示形式
+Display formats were not applied: this Frappe version holds no per-language formats. Set them in System Settings or per user.,表示形式は反映されませんでした。この Frappe の版には言語ごとの表示形式がありません。システム設定またはユーザーごとに指定してください。
+Do Not Translate,訳さない
+Documentation,ドキュメント
+Empty Translation,訳文が空
+Enable Disabled Currencies,未有効の通貨を自動で有効にする
+Enabled currency {0},通貨 {0} を有効にしました
+Every app installed on the site is measured when this is empty.,空のときはサイトに導入済みの全アプリを対象にします
+Exclusion Rules,除外規則
+Exclusions,除外の一覧
+Export App Translation CSV,アプリ同梱 CSV の書き出し
+Fallback,フォールバック
+Fallback Locale,フォールバック先
+Finding,指摘
+Finished On,終了日時
+First Day of Week,週の開始曜日
+Forbidden Term,使用しない訳語
+Found At,場所
+Found By,検出した走査
+Found In,出所
+"Frappe's own extractor already emits role names from DocPerm, so measuring them twice distorts coverage.",Frappe 標準の抽出器が DocPerm からロール名を拾うため、二重に数えると網羅率が歪みます。
+Glossary,用語集
+Glossary Term,用語集
+Glossary Violation,用語集違反
+Go To,開く
+HTML Mismatch,HTML不一致
+Has Issues,指摘あり
+Hash,ハッシュ
+I18n Exclusion Rule,除外規則
+I18n Settings,多言語管理設定
+"Ignore Patterns (regex, one per line)",除外パターン（正規表現・1行1件）
+Ignored,対象外
+Import Complete,取り込みました
+Import Review Sheet,レビュー表の取り込み
+Importing...,インポート中...
+Inherited,親言語からの継承
+Inherited from Parent,親言語から継承
+Finding Summary,指摘の要約
+"Item Group, Customer Group, Territory, UOM, Designation and the like. Customer data rather than interface text — off by default and reported separately.",アイテムグループ・顧客グループ・地域・単位・役職など。UI 文字ではなく顧客データのため、既定ではオフにし、別枠で集計します。
+Language {0} is not registered,言語 {0} が未登録です
+Last Scan,最終走査
+Last Scanned On,最終走査日時
+Last Seen On,最終検出
+Last Verified On,最終検証日時
+Latin Residue,英字残り
+Leave empty to crawl this site.,空のときはこのサイト自身を巡回します。
+Ledger Rows,翻訳台帳の行数
+Live,反映済み
+Live on This Site,このサイトで表示中
+Live on this site,このサイトで表示中
+Locale,ロケール
+Locale Code,ロケールコード
+Locale Name,表示名
+Locale Profile,ロケール
+Locale Target App,対象アプリ
+Locales,ロケール
+Localization,多言語管理
+Localization Coverage,網羅率
+Localization Delivery,反映状況
+Localization Exclusions,除外の一覧
+Log in with a browser and read what is actually on the screen. Needs Playwright on this server and the crawl settings in I18n Settings.,ブラウザでログインし、画面に実際に表示されている文字を読み取ります。このサーバーに Playwright が必要で、巡回の設定は多言語管理設定で行います。
+Term Match Type,一致方法
+Matched Rule,一致した規則
+Matched against the stripped source text with re.search,前後の空白を除いた原文に対して re.search で照合します
+Max Screens per Scan,1 回の走査で回る画面数の上限
+Measurement Routes,測定結果
+Measurement Route,経路
+Messages Without a Translation Function,翻訳関数の未適用
+Minimum String Length,検出対象の最小文字数
+New Entries,新規登録
+No drafts to approve,承認する下書きはありません
+No reason recorded,理由の記録なし
+Not Applicable Reason,対象外の理由
+Not Deployed,未反映
+Not Wrapped,翻訳関数の未適用
+Not Yet Live,未反映
+Not deployed,未反映
+Occurrence Count,出現回数
+On Screen,画面上
+On: set the entry to Not Applicable. Off: record the reason but leave it counting as untranslated until someone confirms.,オン: 行を「対象外」にします。オフ: 理由だけ記録し、誰かが確定するまで未訳として数えます。
+Only UI Text counts towards the headline coverage figure.,見出しの網羅率に数えるのは UI 文字だけです。
+Only rows with an entry in the proposal column are imported. Blank rows are left unchanged.,「修正案」列に記入のある行だけを取り込みます。空欄の行は変更しません。
+Overridden,上書きされている
+Own,固有
+Own = belongs to this locale / Fallback = taken from the fallback locale / Inherited = Frappe inherited it from the parent language,Own=このロケール固有の訳 / Fallback=フォールバック先から採用 / Inherited=Frappe が親言語から継承したもの
+Own Coverage,固有訳の網羅率
+Own Translations,固有訳
+Pattern (regex),パターン（正規表現）
+Placeholder Mismatch,プレースホルダ不一致
+Placeholder Only,プレースホルダのみ
+Playwright is not installed in this environment,この環境には Playwright が入っていません
+"Playwright is required for the screen crawl. Install it on this server (pip install ""lifegence_i18n[screen]"") or turn off Rendered Screens.","実画面の巡回には Playwright が必要です。このサーバーに導入する（pip install ""lifegence_i18n[screen]""）か、「実画面」のチェックを外してください。"
+Proposed Change,修正案
+Queued the scan,実行を登録しました
+Reference Field,参照フィールド
+Reference Record,参照レコード
+Rendered Screens,実画面
+Rendered Screens (browser crawl),実画面（ブラウザ巡回）
+Renderings Not to Use (one per line),使用しない訳語（1行1件）
+Report Violations as Issues,違反を指摘として記録する
+Result,結果
+Results by App and Route,アプリ×経路の内訳
+Review Sheet (CSV),レビュー表 (CSV)
+Reviewed,確認済
+Reviewer Comment,確認者コメント
+"Route 4: a browser logs in and reads the rendered screens as they stand — text, placeholders, tooltips and Select options; nothing is clicked. Runs only where Playwright is installed (not on Frappe Cloud). The password is stored encrypted and never written to logs or exports.",経路 4: ブラウザでログインし、表示されている画面をそのまま読み取ります（テキスト、プレースホルダ、ツールチップ、Select の選択肢。クリック操作はしません）。Playwright が入っている環境でのみ動きます（Frappe Cloud では動きません）。パスワードは暗号化して保存し、ログや成果物には出しません。
+Run Replacement,実行する
+Run Scan,走査を実行
+Running,実行中
+Running. The page refreshes when it finishes.,実行中です。完了すると自動で更新されます。
+Scan Database,データベースを走査する
+Scan Master Data,マスターデータを走査する
+Scan Role Names,ロール名を走査する
+Scan Source Code,ソースコードを走査する
+Scan {0} is still running for this locale. Wait for it to finish.,このロケールの走査 {0} がまだ実行中です。終わるまでお待ちください。
+Scanning,測定
+Scans,走査
+Screen,実画面
+Screen Crawl,実画面の巡回
+Set the screen crawl password in I18n Settings,多言語管理設定で巡回用ユーザーのパスワードを設定してください
+Severity,重要度
+Shorter strings are not put in the ledger.,これより短い文字列は台帳に載せません
+Site URL to Crawl,巡回先のサイト URL
+Site URL to Crawl may not point at a private or link-local address,巡回先のサイト URL にプライベートアドレスやリンクローカルアドレスは指定できません
+Site URL to Crawl must be an http(s) URL,巡回先のサイト URL は http(s) の URL にしてください
+Site URL to Crawl must use https unless it is localhost,巡回先のサイト URL は localhost 以外では https にしてください
+Something later in the merge order resolves these strings to a different value.,読込順で後の供給元が、これらの文字列を別の値に解決しています。
+Source Code,ソースコード
+Source Language,原文の言語
+Started On,開始日時
+Started scan {0},走査 {0} を開始しました
+String Class,文字列クラス
+Strings,文字列数
+"Strings matching a rule are still recorded, marked Not Applicable with the reason. Excluding without a trace cannot be explained later.",規則に一致した文字列も記録し、理由付きで「対象外」にします。痕跡なく除外すると、後で説明できません。
+Substring,部分一致
+Superseded by Exclusion Rules. Retained for one release so an existing configuration can be read; edits here have no effect.,除外規則に置き換わりました。既存の設定を読めるよう 1 版だけ残しています。ここを編集しても効果はありません。
+Target Apps,対象アプリ
+Term (Source),用語（原文）
+Terms Allowed in Latin Script (one per line),英字のまま許容する語（1行1件）
+"The crawl user {0} reads the site in {1}, not {2}",巡回用ユーザー {0} の表示言語は {1} で、{2} ではありません
+The files carry these translations but this site is serving an older copy. Run bench clear-cache.,ファイルには訳がありますが、このサイトは古い訳を保持しています。bench clear-cache を実行してください。
+There is nothing to export for {0} / {1},書き出す訳がありません（{0} / {1}）
+"These translations have not reached the application files yet — not exported, not merged, or not deployed.",これらの訳はまだアプリのファイルに届いていません。未エクスポート・未マージ・未デプロイのいずれかです。
+"This locale's own translations, excluding anything inherited from the parent language.",親言語からの継承を除いた、このロケール自身の訳の割合
+Total Strings,文字列 総数
+Translated,訳済
+Translated Term,訳語
+Translation Context,文脈
+Translation Entry,翻訳台帳
+Translation Issue,指摘
+Translation Ledger,翻訳台帳
+Translation Scan,翻訳走査
+Translation Scan Result,走査結果
+Translation Source,訳の出どころ
+UI Text,UI 文字
+Unreachable Whitespace,空白のため到達不能
+Untranslated Strings,未訳の文字列
+Verify Delivery,反映を検証
+View Issues,指摘を見る
+What to Measure,測定対象
+Where It Appears,出現箇所
+Whether the approved translation has actually reached the running site.,承認済みの訳が、稼働中のサイトに実際に届いているか。
+"Why this string is not a translation target. Set by an exclusion rule, or by hand as Manual.",この文字列が翻訳対象でない理由。除外規則が設定するか、手動で「Manual」を指定します。
+Word,単語
+"Writes <app>/translations/<lang>.csv where the app is checked out on this server, ready to commit. Not available on Frappe Cloud.",このサーバーにチェックアウトされているアプリの <app>/translations/<lang>.csv に書き出します。そのままコミットできます。Frappe Cloud では使えません。
+Written in Latin Script,ラテン文字を使う言語
+Written to {0},{0} に書き出しました
+{0} created / {1} updated,新規 {0} 件 / 更新 {1} 件
+{0} is not a language code,{0} は言語コードではありません
+"{0} is not installed on this bench, so its translations folder cannot be written",{0} はこのベンチに導入されていないため、translations フォルダに書き出せません
+{0} rows affected (first 200 shown),対象 {0} 件（先頭 200 件を表示）
+{0} translations are still Draft and were not applied. Use Actions → Approve Drafts.,{0} 件の訳が下書きのままで反映されていません。「動作 → 下書きを承認」を使ってください。

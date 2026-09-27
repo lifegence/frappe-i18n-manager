@@ -1,0 +1,23 @@
+Lifegence I18n — multilingual management for Frappe / ERPNext
+
+Copyright (C) 2026 Lush Ltd.
+Copyright (C) 2026 Lush Japan G.K. (ラッシュジャパン合同会社)
+Copyright (C) 2026 Lifegence Corporation (ライフジェンス株式会社)
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU Affero General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License along
+with this program. If not, see <https://www.gnu.org/licenses/>.
+
+The licence text is in LICENSE.
+
+The app was built as a joint development between Lush Japan and Lifegence
+Corporation. Lifegence Corporation maintains it: it follows the Frappe and
+ERPNext release lines and fixes defects.

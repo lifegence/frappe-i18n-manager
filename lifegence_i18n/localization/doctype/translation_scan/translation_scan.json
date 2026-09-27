@@ -1,0 +1,225 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2026-08-13 07:31:03.601194",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "scan_head",
+  "naming_series",
+  "locale",
+  "status",
+  "scan_head_col",
+  "scan_source",
+  "scan_database",
+  "scan_master_data",
+  "scan_roles",
+  "scan_messages",
+  "scan_screens",
+  "scan_result",
+  "total_strings",
+  "translated_strings",
+  "untranslated_strings",
+  "coverage",
+  "scan_result_col",
+  "new_entries",
+  "updated_entries",
+  "issues_found",
+  "scan_apps",
+  "results",
+  "scan_log",
+  "started_on",
+  "finished_on",
+  "log"
+ ],
+ "fields": [
+  {
+   "fieldname": "scan_head",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "I18N-SCAN-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "hidden": 1,
+   "label": "Series",
+   "options": "I18N-SCAN-.YYYY.-"
+  },
+  {
+   "fieldname": "locale",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Locale",
+   "options": "Locale Profile",
+   "reqd": 1
+  },
+  {
+   "default": "Queued",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Queued\nRunning\nCompleted\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "scan_head_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "scan_source",
+   "fieldtype": "Check",
+   "label": "Source Code"
+  },
+  {
+   "default": "1",
+   "fieldname": "scan_database",
+   "fieldtype": "Check",
+   "label": "Database Route"
+  },
+  {
+   "fieldname": "scan_master_data",
+   "fieldtype": "Check",
+   "label": "Scan Master Data"
+  },
+  {
+   "fieldname": "scan_roles",
+   "fieldtype": "Check",
+   "label": "Scan Role Names"
+  },
+  {
+   "default": "1",
+   "fieldname": "scan_messages",
+   "fieldtype": "Check",
+   "label": "Messages Without a Translation Function"
+  },
+  {
+   "fieldname": "scan_screens",
+   "fieldtype": "Check",
+   "label": "Rendered Screens"
+  },
+  {
+   "fieldname": "scan_result",
+   "fieldtype": "Section Break",
+   "label": "Result"
+  },
+  {
+   "fieldname": "total_strings",
+   "fieldtype": "Int",
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "translated_strings",
+   "fieldtype": "Int",
+   "label": "Translated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "untranslated_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Untranslated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "coverage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Coverage",
+   "read_only": 1
+  },
+  {
+   "fieldname": "scan_result_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "new_entries",
+   "fieldtype": "Int",
+   "label": "New Entries",
+   "read_only": 1
+  },
+  {
+   "fieldname": "updated_entries",
+   "fieldtype": "Int",
+   "label": "Updated",
+   "read_only": 1
+  },
+  {
+   "fieldname": "issues_found",
+   "fieldtype": "Int",
+   "label": "Issues",
+   "read_only": 1
+  },
+  {
+   "fieldname": "scan_apps",
+   "fieldtype": "Section Break",
+   "label": "By App"
+  },
+  {
+   "fieldname": "results",
+   "fieldtype": "Table",
+   "label": "Results by App and Route",
+   "options": "Translation Scan Result",
+   "read_only": 1
+  },
+  {
+   "fieldname": "scan_log",
+   "fieldtype": "Section Break",
+   "label": "Log"
+  },
+  {
+   "fieldname": "started_on",
+   "fieldtype": "Datetime",
+   "label": "Started On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finished_on",
+   "fieldtype": "Datetime",
+   "label": "Finished On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "log",
+   "fieldtype": "Code",
+   "label": "Log",
+   "options": "Text",
+   "read_only": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-19 23:20:20.530822",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Translation Scan",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

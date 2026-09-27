@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-13 07:31:03.451800",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "app_name",
+  "source_kind",
+  "string_class",
+  "total_strings",
+  "translated_strings",
+  "untranslated_strings",
+  "coverage"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "app_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "App"
+  },
+  {
+   "columns": 2,
+   "fieldname": "source_kind",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Measurement Route",
+   "options": "Source Code\nDatabase\nCode Message\nScreen\nManual"
+  },
+  {
+   "columns": 2,
+   "fieldname": "string_class",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Class",
+   "read_only": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "total_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total"
+  },
+  {
+   "columns": 2,
+   "fieldname": "translated_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Translated"
+  },
+  {
+   "columns": 1,
+   "fieldname": "untranslated_strings",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Untranslated"
+  },
+  {
+   "columns": 2,
+   "fieldname": "coverage",
+   "fieldtype": "Percent",
+   "in_list_view": 1,
+   "label": "Coverage"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-01 09:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "Translation Scan Result",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

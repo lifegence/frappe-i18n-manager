@@ -1,0 +1,8 @@
+[pre_model_sync]
+
+[post_model_sync]
+lifegence_i18n.patches.v1_1.seed_exclusion_rules
+lifegence_i18n.patches.v1_1.reclassify_excluded_entries
+lifegence_i18n.patches.v1_2.unique_ledger_rows
+lifegence_i18n.patches.v1_2.seed_acronym_rule
+lifegence_i18n.patches.v1_2.seed_developer_note_rules

@@ -1,0 +1,104 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.event_name }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Server (${{ matrix.frappe-branch }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # The app supports both stable lines, and a change that passes on only
+        # one of them is the defect. Both are required to pass.
+        #
+        # Each branch names the runtimes it builds under, and they differ:
+        # version-15 asks for Python >=3.10 and Node >=18, version-16 for Python
+        # >=3.14 and Node >=24. Handing version-16 an older Python fails on
+        # frappe's own `type X = ...` (PEP 695, 3.12 and later) before this app
+        # is installed; an older Node fails in `yarn install` on the engines
+        # field. Both are read from frappe's pyproject.toml and package.json.
+        include:
+          - frappe-branch: version-15
+            python-version: '3.11'
+            node-version: 20
+          - frappe-branch: version-16
+            python-version: '3.14'
+            node-version: 24
+
+    services:
+      redis-cache:
+        image: redis:alpine
+        ports: ['13000:6379']
+      redis-queue:
+        image: redis:alpine
+        ports: ['11000:6379']
+      redis-socketio:
+        image: redis:alpine
+        ports: ['12000:6379']
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports: ['3306:3306']
+        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=10
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          check-latest: true
+
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ matrix.frappe-branch }}-${{ hashFiles('**/pyproject.toml') }}
+          restore-keys: ${{ runner.os }}-pip-${{ matrix.frappe-branch }}-
+
+      - name: Setup bench
+        run: |
+          pip install frappe-bench
+          bench init --skip-redis-config-generation --skip-assets \
+            --frappe-branch ${{ matrix.frappe-branch }} \
+            --python "$(which python)" ~/frappe-bench
+          mysql --host 127.0.0.1 --port 3306 -u root -proot \
+            -e "SET GLOBAL character_set_server = 'utf8mb4'"
+          mysql --host 127.0.0.1 --port 3306 -u root -proot \
+            -e "SET GLOBAL collation_server = 'utf8mb4_unicode_ci'"
+
+      - name: Install
+        working-directory: /home/runner/frappe-bench
+        env:
+          CI: 'Yes'
+        run: |
+          bench get-app lifegence_i18n "$GITHUB_WORKSPACE"
+          bench setup requirements --dev
+          bench new-site --db-root-password root --admin-password admin test_site
+          bench --site test_site install-app lifegence_i18n
+          bench build
+
+      - name: Run tests
+        working-directory: /home/runner/frappe-bench
+        env:
+          TYPE: server
+        run: |
+          bench --site test_site set-config allow_tests true
+          bench --site test_site run-tests --app lifegence_i18n

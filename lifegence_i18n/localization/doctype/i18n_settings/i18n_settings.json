@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-08-13 07:30:43.556020",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "basic_section",
+  "source_language",
+  "auto_create_language",
+  "auto_enable_currency",
+  "detect_section",
+  "min_string_length",
+  "ignore_patterns",
+  "exclusion_rules",
+  "detect_col",
+  "allowed_latin_terms",
+  "screen_crawl_section",
+  "screen_site_url",
+  "screen_user",
+  "screen_col",
+  "screen_password",
+  "screen_max_screens"
+ ],
+ "fields": [
+  {
+   "fieldname": "basic_section",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "default": "en",
+   "fieldname": "source_language",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Source Language",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create_language",
+   "fieldtype": "Check",
+   "label": "Create Missing Languages"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_enable_currency",
+   "fieldtype": "Check",
+   "label": "Enable Disabled Currencies"
+  },
+  {
+   "fieldname": "detect_section",
+   "fieldtype": "Section Break",
+   "label": "Detection"
+  },
+  {
+   "default": "2",
+   "description": "Shorter strings are not put in the ledger.",
+   "fieldname": "min_string_length",
+   "fieldtype": "Int",
+   "label": "Minimum String Length"
+  },
+  {
+   "description": "Superseded by Exclusion Rules. Retained for one release so an existing configuration can be read; edits here have no effect.",
+   "fieldname": "ignore_patterns",
+   "fieldtype": "Small Text",
+   "hidden": 1,
+   "label": "Ignore Patterns (regex, one per line)",
+   "read_only": 1
+  },
+  {
+   "description": "Strings matching a rule are still recorded, marked Not Applicable with the reason. Excluding without a trace cannot be explained later.",
+   "fieldname": "exclusion_rules",
+   "fieldtype": "Table",
+   "label": "Exclusion Rules",
+   "options": "I18n Exclusion Rule"
+  },
+  {
+   "fieldname": "detect_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Brand names, units and abbreviations. Excluded from the Latin residue check.",
+   "fieldname": "allowed_latin_terms",
+   "fieldtype": "Small Text",
+   "label": "Terms Allowed in Latin Script (one per line)"
+  },
+  {
+   "fieldname": "screen_crawl_section",
+   "fieldtype": "Section Break",
+   "label": "Screen Crawl",
+   "description": "Route 4: a browser logs in and reads the rendered screens as they stand — text, placeholders, tooltips and Select options; nothing is clicked. Runs only where Playwright is installed (not on Frappe Cloud). The password is stored encrypted and never written to logs or exports."
+  },
+  {
+   "fieldname": "screen_site_url",
+   "fieldtype": "Data",
+   "label": "Site URL to Crawl",
+   "description": "Leave empty to crawl this site."
+  },
+  {
+   "fieldname": "screen_user",
+   "fieldtype": "Link",
+   "label": "Crawl User",
+   "options": "User",
+   "description": "A read-only user is recommended. Administrator is used when empty. The user needs read permission on the DocTypes of every target app: a screen it may not open is counted as not opened, not measured (324 of 400 with one read-only user). Any System Manager can read a stored password back, so give this user a password used for nothing else."
+  },
+  {
+   "fieldname": "screen_col",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "screen_password",
+   "fieldtype": "Password",
+   "label": "Crawl User Password"
+  },
+  {
+   "default": "300",
+   "fieldname": "screen_max_screens",
+   "fieldtype": "Int",
+   "label": "Max Screens per Scan",
+   "description": "0 = no limit. A site with 650 DocTypes has about 2,000 screens, at three seconds each."
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-09-19 23:20:20.530008",
+ "modified_by": "Administrator",
+ "module": "Localization",
+ "name": "I18n Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
