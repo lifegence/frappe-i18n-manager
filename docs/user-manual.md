@@ -602,8 +602,7 @@ The dictionary that judges is the one **the crawled site** serves to the crawl
 user, read once just after login (the `judging by the site's own dictionary`
 line). The two machines need not carry the same translation files. Anything the
 ledger has translated and the crawled site does not serve is counted as `not
-delivered` and listed in the log. The separate guide *Crawling a site from
-another machine* has the details.
+delivered` and listed in the log. [`remote-crawl.md`](remote-crawl.md) has the details.
 
 The URL has rules. To crawl anything other than your own site it must be https,
 must not be an internal address, and needs `i18n_allow_remote_crawl` in

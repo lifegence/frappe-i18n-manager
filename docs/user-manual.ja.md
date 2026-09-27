@@ -2,7 +2,9 @@
 
 **lifegence_i18n 0.1.0 ／ 2026年9月18日**
 
-対象：Frappe / ERPNext version-15 および version-16 ／ English: `20260918_UserManual_EN.md`
+対象：Frappe / ERPNext version-15 および version-16
+
+> この文書は [`user-manual.md`](user-manual.md) の日本語訳です。記述が食い違う場合は英語版が正となります。
 
 > v1.1 の変更点: 4 つ目の探し方「実画面の巡回」（5-1 節）、網羅率レポートの文字列クラス別表示、新しいレポート「除外の一覧」、アプリ同梱 CSV の書き出し先の追加（11 章）。
 >
@@ -503,7 +505,7 @@ bench --site <サイト名> execute lifegence_i18n.scanner.screen.run --kwargs '
 
 ただしこの形では、**結果は実行した側のサイトに記録されます。** 対象サイトの台帳には入りません。
 
-判定に使う訳の辞書は、**巡回した先のサイト**が巡回用ユーザーに配っているものです（ログイン直後に 1 回読み取ります。ログの `judging by the site's own dictionary` の行）。実行した側と巡回先で翻訳ファイルが揃っていなくても構いません。台帳に訳があるのに巡回先が配っていないものは `not delivered` に数えられ、一覧がログに出ます。詳しい手順は『別マシンからの実画面巡回 手順書』と『実画面巡回の運用フロー』にあります。
+判定に使う訳の辞書は、**巡回した先のサイト**が巡回用ユーザーに配っているものです（ログイン直後に 1 回読み取ります。ログの `judging by the site's own dictionary` の行）。実行した側と巡回先で翻訳ファイルが揃っていなくても構いません。台帳に訳があるのに巡回先が配っていないものは `not delivered` に数えられ、一覧がログに出ます。詳しい手順は[`remote-crawl.md`](remote-crawl.md)（日本語版は [`remote-crawl.ja.md`](remote-crawl.ja.md)）にあります。
 
 巡回先の URL には決まりがあります。自分のサイト以外を指定する場合は https のみ、社内アドレスは不可、さらに `site_config.json` に `i18n_allow_remote_crawl` の設定が要ります。保存したパスワードをブラウザが送信する先なので、誤った宛先に送らないための制限です。
 

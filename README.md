@@ -307,9 +307,13 @@ through Frappe's public interfaces.
 
 | Document | Audience |
 |---|---|
-| [Four languages on one site](docs/20260927_CoverageAcrossLocales_EN.md) ([日本語](docs/20260927_CoverageAcrossLocales_JA.md)) | Anyone deciding whether this is worth running |
-| [User Manual](docs/20260918_UserManual_EN.md) ([日本語](docs/20260918_I18nApp_UserManual_JA_v1.1_Draft.md)) | Operators |
-| [Crawling a site from another machine](docs/20260920_RemoteCrawl_EN.md) ([日本語](docs/20260920_I18nApp_RemoteCrawl_JA_v1.0_Draft.md)) | Operators running the screen route against a site that cannot host a browser |
+| [Four languages on one site](docs/coverage-across-locales.md) | Anyone deciding whether this is worth running |
+| [User manual](docs/user-manual.md) | Operators |
+| [Crawling a site from another machine](docs/remote-crawl.md) | Operators running the screen route against a site that cannot host a browser |
 
 Everything else you need to run the app is in this file and in
 [CONTRIBUTING](CONTRIBUTING.md).
+
+Each of these has a Japanese translation beside it, named `*.ja.md`. **English
+is the original**; where a translation and the English disagree, the English is
+what the software does.

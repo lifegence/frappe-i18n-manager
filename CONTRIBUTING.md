@@ -88,6 +88,16 @@ language's **script** is present, not which language it is. It cannot tell
 Korean from Japanese, or Russian from Mongolian. This is documented, not a
 bug to report.
 
+## Documentation
+
+**English is the original.** `docs/user-manual.md` is the manual;
+`docs/user-manual.ja.md` is a translation of it. A change to how the software
+behaves belongs in the English first, and a translation that has fallen behind
+is a translation that is wrong, not a second opinion.
+
+A translation into another language follows the same shape: `<name>.<code>.md`
+beside the English, with a line at the top saying which document it translates.
+
 ## Pull requests
 
 - One subject per pull request. A branch that fixes a rule and renames a field
