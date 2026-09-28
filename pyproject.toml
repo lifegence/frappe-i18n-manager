@@ -21,6 +21,12 @@ screen = ["playwright"]
 requires = ["flit_core >=3.12,<4"]  # PEP 639: SPDX license string + license-files
 build-backend = "flit_core.buildapi"
 
+# Read by bench when the app is installed. Frappe Cloud refuses an app that does
+# not declare which framework versions it runs on; a local bench does not, which
+# is why a missing declaration only shows up on a staging site.
+[tool.bench.frappe-dependencies]
+frappe = ">=15.0.0,<17.0.0"
+
 [tool.bench.dev-dependencies]
 # package_name = "~=1.1.0"
 

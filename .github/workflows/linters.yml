@@ -29,6 +29,19 @@ jobs:
       # a confidentiality stamp. The script itself lists what it looks for.
       - run: python3 scripts/check_publishable.py
 
+  packaging:
+    name: Packaging declarations
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      # Declarations a deployment reads and a test never does. An app shipped
+      # without [tool.bench.frappe-dependencies] installs on a local bench and
+      # is refused by Frappe Cloud, so the customer finds out first.
+      - run: python3 scripts/check_packaging.py
+
   ruff:
     name: Ruff
     runs-on: ubuntu-latest
