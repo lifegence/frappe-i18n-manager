@@ -13,8 +13,10 @@ For Frappe / ERPNext version-15 and version-16.
 
 ### In three lines
 
-1. An ERPNext screen keeps English on it that nobody has translated. The
-   standard tools cannot tell you how much, and cannot help you fix it.
+1. Frappe offers 83 languages and translates 36 of them. Pick one outside
+   that, or install an application written for your own business, and the
+   English on screen is yours to deal with. The standard tools cannot tell you
+   how much there is, and cannot help you fix it.
 2. This app **finds that English four different ways, hands it out as a
    spreadsheet, takes the translations back, and delivers them — to this site,
    and into the files an application ships.**

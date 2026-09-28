@@ -1,6 +1,19 @@
 # I18n Manager
 
-Runs a Frappe or ERPNext site in another language, and keeps it that way.
+**Run a Frappe or ERPNext site in a language Frappe does not ship — across every
+application on the bench, including the ones you wrote yourself.**
+
+Frappe offers 83 languages and translates 36 of them; ERPNext ships 71. Pick
+anything outside that and the site is yours to translate. And whatever language
+you pick, nobody upstream has ever translated the applications written for your
+own business: on the site this app was built for, five in-house applications
+came to 988 translatable strings, at 0 to 1.2% in the three languages nobody was
+paid to do.
+
+This app covers all of it. Every application installed on the site is measured
+by default — frappe, ERPNext, anything from the marketplace, anything you wrote
+this month — and an application installed later is picked up on the next scan
+without a setting being touched.
 
 It finds what is untranslated, hands it out as a spreadsheet, takes the filled-in
 sheet back, writes the agreed translations to the site and into the files an

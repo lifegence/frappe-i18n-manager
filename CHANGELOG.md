@@ -2,7 +2,12 @@
 
 ## 0.1.0 — first public release
 
-Runs a Frappe or ERPNext site in another language, and keeps it that way. The
+Runs a Frappe or ERPNext site in a language Frappe does not ship, across every
+application installed on it — frappe, ERPNext, marketplace applications, and
+the ones written for that business alone, which nobody upstream will ever
+translate. Frappe offers 83 languages and translates 36; ERPNext ships 71.
+
+The
 app finds what is untranslated, hands the gaps over as a spreadsheet, takes the
 filled-in sheet back, writes the agreed translations to the site and into the
 files an application ships, and then checks that they reached the screen. One
