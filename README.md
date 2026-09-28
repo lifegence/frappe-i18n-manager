@@ -1,4 +1,4 @@
-# Lifegence I18n
+# I18n Manager
 
 Multilingual management for Frappe / ERPNext: locale profiles, a translation
 ledger, a glossary, and coverage you can measure rather than estimate.
@@ -7,6 +7,11 @@ The initial locale set is Japan, Taiwan, Hong Kong and Croatia. It is a starting
 set, not a fixed list — a further country needs four values and nothing else.
 
 Workspace: `/app/localization` (listed as **Localization** in the app switcher).
+
+Built jointly by **Lush Japan** and **Lifegence Corporation**, and released as
+open source rather than kept private. Copyright is held by Lush, Lush Japan and
+Lifegence — see [NOTICE](NOTICE). Lifegence maintains it: it follows the Frappe
+and ERPNext release lines and fixes defects.
 
 ## What it does
 

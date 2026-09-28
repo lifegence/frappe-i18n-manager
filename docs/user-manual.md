@@ -1,4 +1,4 @@
-# Lifegence I18n — user manual
+# I18n Manager — user manual
 
 **lifegence_i18n 0.1.0 · 18 September 2026**
 

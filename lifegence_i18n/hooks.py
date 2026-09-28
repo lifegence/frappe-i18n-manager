@@ -1,6 +1,6 @@
 app_name = "lifegence_i18n"
-app_title = "Lifegence I18n"
-app_publisher = "Lifegence"
+app_title = "I18n Manager"
+app_publisher = "Lifegence Corporation"
 app_description = "Multilingual management for Frappe/ERPNext"
 app_email = "info@lifegence.co.jp"
 app_license = "agpl-3.0"
