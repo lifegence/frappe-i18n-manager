@@ -1,7 +1,12 @@
 # I18n Manager
 
-Multilingual management for Frappe / ERPNext: locale profiles, a translation
-ledger, a glossary, and coverage you can measure rather than estimate.
+Runs a Frappe or ERPNext site in another language, and keeps it that way.
+
+It finds what is untranslated, hands it out as a spreadsheet, takes the filled-in
+sheet back, writes the agreed translations to the site and into the files an
+application ships, and then checks that they reached the screen. One step of
+that loop is not the app's: somebody who knows the language writes the
+translations. Everything on either side of that is.
 
 The initial locale set is Japan, Taiwan, Hong Kong and Croatia. It is a starting
 set, not a fixed list — a further country needs four values and nothing else.
@@ -13,18 +18,80 @@ open source rather than kept private. Copyright is held by Lush, Lush Japan and
 Lifegence — see [NOTICE](NOTICE). Lifegence maintains it: it follows the Frappe
 and ERPNext release lines and fixes defects.
 
-## What it does
+## The loop
 
-| Capability | DocType |
+| | Step | What the app does | Where |
+|---|---|---|---|
+| 1 | **Measure** | Four routes find what is untranslated and write one ledger row per source string | Run Scan |
+| 2 | **Hand out** | The gaps leave as a CSV a translator can open in a spreadsheet | Export → Review Sheet |
+| 3 | *Translate* | *Outside the app. A person, an agency, a machine — whoever knows the language* | — |
+| 4 | **Take back** | Only the proposal column is read, so a half-finished sheet is safe to return | Import File → Review Sheet |
+| 5 | **Agree** | A translation somebody typed and one somebody agreed to are different states | Approve Drafts |
+| 6 | **Deliver** | Write them to the site, and generate the `translations/<lang>.csv` an application ships — optionally straight into the app's own folder | Apply to Site / Export → App Translation CSV |
+| 7 | **Check** | Whether each translation actually reached the screen, and if not, why | Verify Delivery |
+
+Step 6 is what makes the site multilingual. Steps 1 and 7 are what stop it
+quietly stopping.
+
+Alongside the loop: a glossary with wordings that must not be used, nine checks
+over the ledger, exclusion rules that file a naming series as *not applicable*
+with a reason rather than dropping it, and display formats — date, number, first
+day of the week — written to the Language record so the site follows the
+locale's conventions and not just its words.
+
+| Record | What it holds |
 |---|---|
-| Country, language, currency and display formats as one record | Locale Profile |
-| Source text, translation, origin and status, one row each | Translation Entry |
-| Glossary, including renderings that must not be used | Glossary Term |
-| Scan source code and the site database for missing translations | Translation Scan |
-| Placeholder damage, glossary violations, script residue | Translation Issue |
-| App CSV, site Translation records, review sheets | buttons on Locale Profile |
+| Locale Profile | Country, language, currency and display formats as one record |
+| Translation Entry | Source text, translation, where it was found, its status |
+| Glossary Term | Agreed wordings, and renderings that must not be used |
+| Translation Scan | One scan: counts, timings, what each route found |
+| Translation Issue | Placeholder damage, glossary violations, script residue |
+| I18n Settings | Detection settings shared across locales |
 
-## Four measurement routes
+## Delivering translations
+
+Two ways out, and they answer different questions.
+
+**Apply to Site** writes the approved translations as `Translation` records in
+this site's database. Frappe resolves app CSV, then app MO, then Translation
+records — last wins — so this reliably overrides whatever an application ships,
+and it takes effect on the next page load. The same button writes the locale's
+display formats to the `Language` record, so dates, numbers and the first day of
+the week follow the locale too.
+
+**Export → App Translation CSV** generates the file an application ships,
+`<app>/translations/<lang>.csv`, in exactly the format Frappe reads. Commit it
+and every site running that application gets the translations, not just this
+one. On a bench you can reach, it will write straight into the application's own
+folder so a developer can commit from there; on Frappe Cloud you get the
+download.
+
+A row whose translation equals its source is left out — Frappe resolves to the
+source anyway — except where leaving it alone was the decision: a brand name or
+an acronym ruled *not applicable* ships as itself, so it stops being reported as
+a gap. A row with no context is written with two columns and a row with one with
+three, so re-exporting over an existing file does not rewrite every line.
+
+### Did it arrive?
+
+`Verify Delivery` on a Locale Profile compares three dictionaries — the
+ledger, the application files read straight from disk, and what the site
+resolves right now — and reports each approved string as one of:
+
+| State | Meaning | Fix |
+|---|---|---|
+| Live | on the screen | — |
+| Cache Stale | the file has it, this site is serving an older copy | `bench clear-cache` |
+| Not Deployed | no file has it: not exported, merged or deployed — whatever the site shows meanwhile | ship it |
+| Overridden | some app's file has it and a later file or a Translation record wins | find the other source |
+
+Reading the files past the cache is what separates the last three, which look
+identical from a browser and need completely different fixes.
+
+## Four ways of finding what to translate
+
+Step 1 of the loop. What you never find, you never hand out, so the routes
+decide the ceiling on everything after them.
 
 | # | Route | What it covers | In Frappe |
 |---|---|---|---|
@@ -144,23 +211,6 @@ Three things to know before running it:
 - Records are opened one per DocType; the ledger and the log record such a
   screen as `/app/<doctype>`, never the record's name. The scan log lists
   every screen visited and every string it normalised before storing it.
-
-## Delivery
-
-Measuring what should be translated says nothing about whether the answer
-arrived. `Verify Delivery` on a Locale Profile compares three dictionaries — the
-ledger, the application files read straight from disk, and what the site
-resolves right now — and reports each approved string as one of:
-
-| State | Meaning | Fix |
-|---|---|---|
-| Live | on the screen | — |
-| Cache Stale | the file has it, this site is serving an older copy | `bench clear-cache` |
-| Not Deployed | no file has it: not exported, merged or deployed — whatever the site shows meanwhile | ship it |
-| Overridden | some app's file has it and a later file or a Translation record wins | find the other source |
-
-Reading the files past the cache is what separates the last three, which look
-identical from a browser and need completely different fixes.
 
 ## String classes
 
@@ -283,7 +333,9 @@ Where the app wants a wording of its own, its source string is its own too:
 
 ## Not included
 
-- Machine translation
+- **Writing the translations.** Step 3 of the loop is a person, an agency or a
+  machine translation service, working on the CSV the app hands out. The app
+  does not call one, and does not judge the quality of what comes back
 - Print format (APITemplate) localization
 
 Scan logs and issue findings are written in English as diagnostic data; they are

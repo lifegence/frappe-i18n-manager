@@ -2,10 +2,12 @@
 
 ## 0.1.0 — first public release
 
-The app measures what is not translated on a Frappe or ERPNext site, hands the
-gaps over as a spreadsheet, takes the filled-in sheet back, and then checks
-whether the translations reached the screen. Translating is the operator's
-work; the app does not translate anything.
+Runs a Frappe or ERPNext site in another language, and keeps it that way. The
+app finds what is untranslated, hands the gaps over as a spreadsheet, takes the
+filled-in sheet back, writes the agreed translations to the site and into the
+files an application ships, and then checks that they reached the screen. One
+step is not the app's — somebody who knows the language writes the translations.
+Everything on either side of that is.
 
 ### Four ways of measuring
 
@@ -53,7 +55,8 @@ Frappe version-15 and version-16. The test suite runs on both.
 
 ### Known limitations
 
-- The app does not translate; that step is the operator's, outside the app
+- Writing the translations is step 3 of the loop and happens outside the app,
+  on the CSV it hands out. No machine translation service is called
 - Translation quality is not assessed. Whether a translation is in the right
   *language* is not checked either: the test is whether the target language's
   script is present, so Korean in a Japanese locale, or Russian in a Mongolian

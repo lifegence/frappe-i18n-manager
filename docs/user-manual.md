@@ -14,12 +14,13 @@ For Frappe / ERPNext version-15 and version-16.
 ### In three lines
 
 1. An ERPNext screen keeps English on it that nobody has translated. The
-   standard tools cannot tell you how much.
-2. This app **looks for that English four different ways, writes one row per
-   string into a ledger, and then checks whether the translations reach the
-   screen.**
-3. Translating is human work. The app is an instrument: it tells you what to
-   translate and whether the translation arrived.
+   standard tools cannot tell you how much, and cannot help you fix it.
+2. This app **finds that English four different ways, hands it out as a
+   spreadsheet, takes the translations back, and delivers them — to this site,
+   and into the files an application ships.**
+3. **Writing the translations is the one step it does not do.** That is a
+   person, an agency or a machine, working on the CSV the app hands out.
+   Everything before and after is here.
 
 ### Words used in this manual
 
