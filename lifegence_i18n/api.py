@@ -4,6 +4,8 @@ import io
 import frappe
 from frappe import _
 
+from lifegence_i18n import permissions
+
 
 @frappe.whitelist()
 def export_review_sheet(locale: str, only_untranslated: int = 0):
@@ -13,7 +15,7 @@ def export_review_sheet(locale: str, only_untranslated: int = 0):
 	reviewer's edit should be visible as a proposal until someone accepts it,
 	not silently overwrite the ledger.
 	"""
-	frappe.only_for("System Manager")
+	permissions.only_translate()
 	filters = {"locale": locale, "status": ("!=", "Not Applicable")}
 	if int(only_untranslated or 0):
 		filters["translated_text"] = ("in", ["", None])
@@ -80,7 +82,7 @@ def export_app_translations(locale: str, app: str, write_to_app: int = 0):
 	checkout of the app can commit it straight from there; the download still
 	happens, so the two never differ.
 	"""
-	frappe.only_for("System Manager")
+	permissions.only_manage()
 	language = frappe.db.get_value("Locale Profile", locale, "language")
 	base = {"locale": locale, "app": app, "translated_text": ("is", "set")}
 	fields = ["source_text", "translated_text", "context", "status", "na_reason"]
@@ -223,7 +225,7 @@ def import_review_sheet(locale: str, file_url: str):
 	any of its known names before falling back to its position. A sheet that came
 	back from a Japanese reviewer must still load on an English session.
 	"""
-	frappe.only_for("System Manager")
+	permissions.only_translate()
 	content = frappe.get_doc("File", {"file_url": file_url}).get_content()
 	if isinstance(content, bytes):
 		content = content.decode("utf-8-sig")
@@ -260,7 +262,7 @@ def replace_term(locale: str, find: str, replace: str, dry_run: int = 1):
 	Returns the affected rows before touching anything: a glossary decision that
 	moves 400 strings should be seen before it is made.
 	"""
-	frappe.only_for("System Manager")
+	permissions.only_translate()
 	rows = frappe.get_all(
 		"Translation Entry",
 		filters={"locale": locale, "translated_text": ("like", f"%{find}%")},
@@ -282,6 +284,13 @@ def replace_term(locale: str, find: str, replace: str, dry_run: int = 1):
 	if int(dry_run or 0):
 		return {"count": len(preview), "rows": preview[:200], "applied": False}
 
+	# Seeing what a replacement would do is part of translating. Doing it moves
+	# every one of those rows at once, so it is the manager's call.
+	permissions.only_manage(
+		_("Running a bulk term change is reserved for {0}. You can still check its impact.").format(
+			_("Localization Manager")
+		)
+	)
 	for row in preview:
 		frappe.db.set_value("Translation Entry", row["name"], "translated_text", row["after"])
 	return {"count": len(preview), "rows": preview[:200], "applied": True}
@@ -290,7 +299,7 @@ def replace_term(locale: str, find: str, replace: str, dry_run: int = 1):
 @frappe.whitelist()
 def coverage_by_locale():
 	"""Coverage for every enabled locale, for the workspace chart."""
-	frappe.only_for("System Manager")
+	permissions.only_read()
 	return frappe.get_all(
 		"Locale Profile",
 		filters={"enabled": 1},

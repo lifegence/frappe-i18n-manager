@@ -1,4 +1,5 @@
 [pre_model_sync]
+lifegence_i18n.patches.v1_3.create_localization_roles
 
 [post_model_sync]
 lifegence_i18n.patches.v1_1.seed_exclusion_rules

@@ -4,6 +4,8 @@ import frappe
 from frappe import _
 from frappe.model.document import Document
 
+from lifegence_i18n import permissions
+
 LATIN_SCRIPT_LANGUAGES = {
 	"af",
 	"bs",
@@ -121,6 +123,7 @@ class LocaleProfile(Document):
 
 	@frappe.whitelist()
 	def run_scan(self):
+		permissions.only_manage()
 		if self.scan_screens:
 			from lifegence_i18n.scanner import screen
 
@@ -152,6 +155,7 @@ class LocaleProfile(Document):
 		*should* be translated, while this is quick and answers whether the
 		answer arrived. After a deployment it is the only question worth asking.
 		"""
+		permissions.only_translate()
 		from lifegence_i18n.scanner import delivery
 
 		result = delivery.verify(self.name)
@@ -166,6 +170,7 @@ class LocaleProfile(Document):
 		is not the same as one anyone has agreed to. This is the deliberate act
 		of agreeing to them, rather than a silent side effect of applying.
 		"""
+		permissions.only_manage()
 		names = frappe.get_all(
 			"Translation Entry",
 			filters={"locale": self.name, "status": "Draft", "translated_text": ("is", "set")},
@@ -190,6 +195,7 @@ class LocaleProfile(Document):
 		and approved translations become Translation records, which win over
 		anything shipped in an app.
 		"""
+		permissions.only_manage()
 		formats = self._apply_formats()
 		created, updated, drafts = self._apply_translations()
 		frappe.translate.clear_cache()
@@ -282,7 +288,11 @@ def add_locale(country: str, language: str, currency: str, locale_code: str, loc
 
 	Exposed separately so adding Hong Kong later is one call, not a form the
 	operator has to fill correctly from memory.
+
+	It inserts without permission checks, so it has to make its own: this is a
+	whitelisted call, reachable by anyone with a session.
 	"""
+	permissions.only_manage()
 	if frappe.db.exists("Locale Profile", locale_code):
 		return locale_code
 	profile = frappe.get_doc(

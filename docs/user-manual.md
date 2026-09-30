@@ -385,6 +385,54 @@ measuring.
 > the server without being installed cannot (for whoever runs the server: this
 > means `bench install-app` has been run).
 
+### 4-3. Who may use it
+
+The application ships three roles. Nobody holds one until you grant it; until
+then only System Manager can reach the application at all.
+
+| Role | For | What it covers |
+|---|---|---|
+| Localization Manager | Whoever answers for the state of the site's localization | Settings, locales, running scans, approving, applying to the site |
+| Localization Translator | Whoever writes the translations | Writing and correcting translations, the glossary, the review sheet, working through findings |
+| Localization Viewer | Whoever only needs the numbers | Reading the ledger and the reports |
+
+Grant one under **User › Roles**. Translation work needs no System Manager.
+
+**What each role can do**
+
+| | Manager | Translator | Viewer |
+|---|---|---|---|
+| Read the ledger, findings, scans, glossary and reports | Yes | Yes | Yes |
+| Write and correct a translation | Yes | Yes | — |
+| Add a glossary term | Yes | Yes | — |
+| Export and import the review sheet | Yes | Yes | — |
+| Verify delivery | Yes | Yes | — |
+| See what a bulk term change would affect | Yes | Yes | — |
+| Run a bulk term change | Yes | — | — |
+| Set a status to Approved or Not Applicable | Yes | — | — |
+| Run a scan | Yes | — | — |
+| Approve drafts, apply to the site | Yes | — | — |
+| Export the app translation CSV | Yes | — | — |
+| Change the settings, create a locale | Yes | — | — |
+
+A translation someone typed is Draft. It stays Draft however the person who
+typed it edits the row: the status is a field only a manager may set, so
+agreeing to a translation is a separate act by a separate person.
+
+**Two people who need no role.**
+
+A reviewer in a business department works from the review sheet — a CSV out and
+the same CSV back (chapter 10). They never open the application, so they are
+given nothing.
+
+The crawl user (5-1) logs in to the site being measured and needs read access
+to *its* screens. It uses none of this application's own screens.
+
+**The settings hold a password.** I18n Settings is open to Localization Manager
+and System Manager only, because it stores the crawl user's password, and
+anyone who can administer a Frappe site can read a stored password back in
+clear text. Give the crawl account a password used nowhere else.
+
 ---
 
 ## 5. Measuring

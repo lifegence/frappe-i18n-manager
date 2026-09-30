@@ -113,6 +113,7 @@ Localization Coverage,網羅率
 Localization Delivery,反映状況
 Localization Exclusions,除外の一覧
 Log in with a browser and read what is actually on the screen. Needs Playwright on this server and the crawl settings in I18n Settings.,ブラウザでログインし、画面に実際に表示されている文字を読み取ります。このサーバーに Playwright が必要で、巡回の設定は多言語管理設定で行います。
+Running a bulk term change is reserved for {0}. You can still check its impact.,用語の一括変更の実行は {0} に限られます。影響範囲の確認は行えます。
 Term Match Type,一致方法
 Matched Rule,一致した規則
 Matched against the stripped source text with re.search,前後の空白を除いた原文に対して re.search で照合します
@@ -219,6 +220,7 @@ Word,単語
 "Writes <app>/translations/<lang>.csv where the app is checked out on this server, ready to commit. Not available on Frappe Cloud.",このサーバーにチェックアウトされているアプリの <app>/translations/<lang>.csv に書き出します。そのままコミットできます。Frappe Cloud では使えません。
 Written in Latin Script,ラテン文字を使う言語
 Written to {0},{0} に書き出しました
+You are not permitted to do this. It is reserved for {0}.,この操作は許可されていません。{0} に限られます。
 {0} created / {1} updated,新規 {0} 件 / 更新 {1} 件
 {0} is not a language code,{0} は言語コードではありません
 "{0} is not installed on this bench, so its translations folder cannot be written",{0} はこのベンチに導入されていないため、translations フォルダに書き出せません

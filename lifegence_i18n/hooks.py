@@ -13,6 +13,9 @@ add_to_apps_screen = [
 		"logo": "/assets/lifegence_i18n/images/i18n-logo.svg",
 		"title": "Localization",
 		"route": "/app/localization",
+		# Without this the tile is shown to every desk user, and pressing it is
+		# how they find out they have no access.
+		"has_permission": "lifegence_i18n.permissions.has_app_permission",
 	}
 ]
 

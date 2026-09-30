@@ -6,6 +6,7 @@ from frappe import _
 from frappe.model.document import Document
 from frappe.utils import now_datetime
 
+from lifegence_i18n import permissions
 from lifegence_i18n.scanner import database as db_route
 from lifegence_i18n.scanner import delivery as delivery_route
 from lifegence_i18n.scanner import messages as message_route
@@ -93,6 +94,7 @@ class TranslationScan(Document):
 	def enqueue_run(self):
 		"""Scanning frappe + erpnext parses several thousand files, so this never
 		runs inside a web request."""
+		permissions.only_manage()
 		other = self.another_running()
 		if other:
 			frappe.throw(_("Scan {0} is still running for this locale. Wait for it to finish.").format(other))

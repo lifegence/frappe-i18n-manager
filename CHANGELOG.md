@@ -1,5 +1,46 @@
 # Changelog
 
+## Unreleased
+
+### Three roles of its own
+
+Until now the only role that could reach the application was System Manager,
+which administers the whole site: handing translation work to somebody meant
+handing them the site. The application now ships three roles, and nobody holds
+one until an operator grants it.
+
+| Role | Covers |
+|---|---|
+| Localization Manager | Settings, locales, running scans, approving, applying to the site |
+| Localization Translator | Writing translations, the glossary, the review sheet, working through findings |
+| Localization Viewer | Reading the ledger and the reports |
+
+Two people still need no role at all: a reviewer works from the review sheet
+and never opens the application, and the crawl user reads the screens of the
+site being measured, not this application's.
+
+**Writing a translation and agreeing to it are now separate acts.** The ledger's
+status and not-applicable reason are held at a higher permission level, so a
+translator's edit leaves the row Draft however they save it. Approving is the
+manager's.
+
+**Permissions are enforced where the work happens.** Frappe runs a whitelisted
+document method after checking only that the caller may *read* the document, so
+a role given read access to open a form could otherwise press every button on
+it — including Apply to Site, which changes what everyone sees. Every
+whitelisted call now states who it is for.
+
+**`add_locale()` checked nothing.** It is whitelisted and inserts without
+permission checks, so any user with a session could create a locale. It now
+requires Localization Manager.
+
+The application's tile on the apps screen was shown to every desk user, and
+pressing it was how they found out they had no access. It now follows the roles,
+as the buttons on each form do.
+
+Upgrading an existing site creates the three roles and grants none of them.
+Nothing changes for a user who holds System Manager.
+
 ## 0.1.0 — first public release
 
 Runs a Frappe or ERPNext site in a language Frappe does not ship, across every

@@ -2,47 +2,51 @@ frappe.ui.form.on("Locale Profile", {
 	refresh(frm) {
 		if (frm.is_new()) return;
 
-		frm.add_custom_button(__("Run Scan"), () => {
-			frm.call("run_scan").then((r) => {
-				if (!r.message) return;
-				frappe.show_alert({
-					message: __("Started scan {0}", [r.message]),
-					indicator: "blue",
+		if (can_manage()) {
+			frm.add_custom_button(__("Run Scan"), () => {
+				frm.call("run_scan").then((r) => {
+					if (!r.message) return;
+					frappe.show_alert({
+						message: __("Started scan {0}", [r.message]),
+						indicator: "blue",
+					});
+					frappe.set_route("Form", "Translation Scan", r.message);
 				});
-				frappe.set_route("Form", "Translation Scan", r.message);
-			});
-		}).addClass("btn-primary");
+			}).addClass("btn-primary");
+		}
 
-		frm.add_custom_button(__("Verify Delivery"), () => {
-			frm.call("verify_delivery").then((r) => {
-				if (!r.message) return;
-				const d = r.message;
-				const rows = [
-					[__("Live on this site"), d.live],
-					[__("Not deployed"), d.not_deployed],
-					[__("Cache stale"), d.stale],
-					[__("Overridden"), d.overridden],
-				];
-				let advice = "";
-				if (d.stale) {
-					advice = __("The files carry these translations but this site is serving an older copy. Run bench clear-cache.");
-				} else if (d.not_deployed) {
-					advice = __("These translations have not reached the application files yet — not exported, not merged, or not deployed.");
-				} else if (d.overridden) {
-					advice = __("Something later in the merge order resolves these strings to a different value.");
-				}
-				frappe.msgprint({
-					title: __("Delivery: {0}", [__(d.state)]),
-					message:
-						`<table class="table table-bordered"><tbody>` +
-						rows.map(([label, n]) => `<tr><td>${label}</td><td class="text-right">${n}</td></tr>`).join("") +
-						`</tbody></table>` +
-						(advice ? `<p>${advice}</p>` : ""),
-					indicator: d.state === "Live" ? "green" : "orange",
+		if (can_translate()) {
+			frm.add_custom_button(__("Verify Delivery"), () => {
+				frm.call("verify_delivery").then((r) => {
+					if (!r.message) return;
+					const d = r.message;
+					const rows = [
+						[__("Live on this site"), d.live],
+						[__("Not deployed"), d.not_deployed],
+						[__("Cache stale"), d.stale],
+						[__("Overridden"), d.overridden],
+					];
+					let advice = "";
+					if (d.stale) {
+						advice = __("The files carry these translations but this site is serving an older copy. Run bench clear-cache.");
+					} else if (d.not_deployed) {
+						advice = __("These translations have not reached the application files yet — not exported, not merged, or not deployed.");
+					} else if (d.overridden) {
+						advice = __("Something later in the merge order resolves these strings to a different value.");
+					}
+					frappe.msgprint({
+						title: __("Delivery: {0}", [__(d.state)]),
+						message:
+							`<table class="table table-bordered"><tbody>` +
+							rows.map(([label, n]) => `<tr><td>${label}</td><td class="text-right">${n}</td></tr>`).join("") +
+							`</tbody></table>` +
+							(advice ? `<p>${advice}</p>` : ""),
+						indicator: d.state === "Live" ? "green" : "orange",
+					});
+					frm.reload_doc();
 				});
-				frm.reload_doc();
 			});
-		});
+		}
 
 		frm.add_custom_button(__("Translation Ledger"), () => {
 			frappe.set_route("List", "Translation Entry", { locale: frm.doc.name });
@@ -59,108 +63,126 @@ frappe.ui.form.on("Locale Profile", {
 			frappe.set_route("List", "Glossary Term", { locale: frm.doc.name });
 		}, __("Go To"));
 
-		frm.add_custom_button(__("Review Sheet (CSV)"), () => {
-			open_url_post(
-				"/api/method/lifegence_i18n.api.export_review_sheet",
-				{ locale: frm.doc.name },
-				true
-			);
-		}, __("Export"));
+		if (can_translate()) {
+			frm.add_custom_button(__("Review Sheet (CSV)"), () => {
+				open_url_post(
+					"/api/method/lifegence_i18n.api.export_review_sheet",
+					{ locale: frm.doc.name },
+					true
+				);
+			}, __("Export"));
 
-		frm.add_custom_button(__("App Translation CSV"), () => {
-			const apps = (frm.doc.target_apps || []).map((row) => row.app_name);
-			frappe.prompt(
-				[
-					{
-						fieldname: "app",
-						label: __("App"),
-						fieldtype: "Select",
-						options: apps.join("\n"),
-						reqd: 1,
+			frm.add_custom_button(__("Review Sheet (CSV)"), () => import_review(frm), __("Import File"));
+
+			frm.add_custom_button(__("Bulk Term Change"), () => term_replace(frm), __("Actions"));
+		}
+
+		if (can_manage()) {
+			frm.add_custom_button(__("App Translation CSV"), () => {
+				const apps = (frm.doc.target_apps || []).map((row) => row.app_name);
+				frappe.prompt(
+					[
+						{
+							fieldname: "app",
+							label: __("App"),
+							fieldtype: "Select",
+							options: apps.join("\n"),
+							reqd: 1,
+						},
+						{
+							fieldname: "write_to_app",
+							label: __("Also write into the app's translations folder on this bench"),
+							fieldtype: "Check",
+							description: __(
+								"Writes <app>/translations/<lang>.csv where the app is checked out on this server, ready to commit. Not available on Frappe Cloud."
+							),
+						},
+					],
+					(values) => {
+						open_url_post(
+							"/api/method/lifegence_i18n.api.export_app_translations",
+							{ locale: frm.doc.name, app: values.app, write_to_app: values.write_to_app ? 1 : 0 },
+							true
+						);
 					},
-					{
-						fieldname: "write_to_app",
-						label: __("Also write into the app's translations folder on this bench"),
-						fieldtype: "Check",
-						description: __(
-							"Writes <app>/translations/<lang>.csv where the app is checked out on this server, ready to commit. Not available on Frappe Cloud."
-						),
-					},
-				],
-				(values) => {
-					open_url_post(
-						"/api/method/lifegence_i18n.api.export_app_translations",
-						{ locale: frm.doc.name, app: values.app, write_to_app: values.write_to_app ? 1 : 0 },
-						true
+					__("Export App Translation CSV")
+				);
+			}, __("Export"));
+
+			frm.add_custom_button(__("Approve Drafts"), () => {
+				frm.call("draft_count").then((r) => {
+					const count = r.message || 0;
+					if (!count) {
+						frappe.show_alert({ message: __("No drafts to approve"), indicator: "blue" });
+						return;
+					}
+					frappe.confirm(
+						__("Approve {0} draft translations so they can be applied to the site?", [count]),
+						() => {
+							frm.call("approve_drafts").then((res) => {
+								frappe.show_alert({
+									message: __("Approved {0}", [res.message.approved]),
+									indicator: "green",
+								});
+							});
+						}
 					);
-				},
-				__("Export App Translation CSV")
-			);
-		}, __("Export"));
+				});
+			}, __("Actions"));
 
-		frm.add_custom_button(__("Review Sheet (CSV)"), () => import_review(frm), __("Import File"));
-
-		frm.add_custom_button(__("Bulk Term Change"), () => term_replace(frm), __("Actions"));
-
-		frm.add_custom_button(__("Approve Drafts"), () => {
-			frm.call("draft_count").then((r) => {
-				const count = r.message || 0;
-				if (!count) {
-					frappe.show_alert({ message: __("No drafts to approve"), indicator: "blue" });
-					return;
-				}
+			frm.add_custom_button(__("Apply to Site"), () => {
 				frappe.confirm(
-					__("Approve {0} draft translations so they can be applied to the site?", [count]),
+					__("Apply the approved translations to the site as Translation records. Continue?"),
 					() => {
-						frm.call("approve_drafts").then((res) => {
-							frappe.show_alert({
-								message: __("Approved {0}", [res.message.approved]),
-								indicator: "green",
+						frm.call("apply_to_site").then((r) => {
+							if (!r.message) return;
+							let message = __("{0} created / {1} updated", [
+								r.message.created,
+								r.message.updated,
+							]);
+							if (r.message.formats === false) {
+								message +=
+									"<br><br>" +
+									__(
+										"Display formats were not applied: this Frappe version holds no per-language formats. Set them in System Settings or per user."
+									);
+							}
+							if (r.message.drafts) {
+								message +=
+									"<br><br>" +
+									__(
+										"{0} translations are still Draft and were not applied. Use Actions → Approve Drafts.",
+										[r.message.drafts]
+									);
+							}
+							frappe.msgprint({
+								title: __("Applied to the site"),
+								indicator: r.message.drafts ? "orange" : "green",
+								message: message,
 							});
 						});
 					}
 				);
-			});
-		}, __("Actions"));
-
-		frm.add_custom_button(__("Apply to Site"), () => {
-			frappe.confirm(
-				__("Apply the approved translations to the site as Translation records. Continue?"),
-				() => {
-					frm.call("apply_to_site").then((r) => {
-						if (!r.message) return;
-						let message = __("{0} created / {1} updated", [
-							r.message.created,
-							r.message.updated,
-						]);
-						if (r.message.formats === false) {
-							message +=
-								"<br><br>" +
-								__(
-									"Display formats were not applied: this Frappe version holds no per-language formats. Set them in System Settings or per user."
-								);
-						}
-						if (r.message.drafts) {
-							message +=
-								"<br><br>" +
-								__(
-									"{0} translations are still Draft and were not applied. Use Actions → Approve Drafts.",
-									[r.message.drafts]
-								);
-						}
-						frappe.msgprint({
-							title: __("Applied to the site"),
-							indicator: r.message.drafts ? "orange" : "green",
-							message: message,
-						});
-					});
-				}
-			);
-		}, __("Actions"));
+			}, __("Actions"));
+		}
 
 		render_summary(frm);
 	},
 });
+
+// The server refuses these calls in any case; hiding the buttons is so that
+// nobody has to press one to find that out.
+function can_manage() {
+	return (
+		frappe.user_roles.includes("Localization Manager") ||
+		frappe.user_roles.includes("System Manager") ||
+		frappe.user_roles.includes("Administrator")
+	);
+}
+
+function can_translate() {
+	return can_manage() || frappe.user_roles.includes("Localization Translator");
+}
 
 function render_summary(frm) {
 	if (!frm.doc.total_strings) return;
@@ -262,6 +284,10 @@ function term_replace(frm) {
 							<tbody>${body}</tbody>
 						</table></div>`
 					);
+					if (!can_manage()) {
+						dialog.set_primary_action(__("Close"), () => dialog.hide());
+						return;
+					}
 					dialog.set_primary_action(__("Run Replacement"), () => {
 						frappe.call({
 							method: "lifegence_i18n.api.replace_term",

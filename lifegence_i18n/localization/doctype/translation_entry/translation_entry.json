@@ -81,7 +81,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Status",
-   "options": "Untranslated\nDraft\nReviewed\nApproved\nNot Applicable"
+   "options": "Untranslated\nDraft\nReviewed\nApproved\nNot Applicable",
+   "permlevel": 1
   },
   {
    "default": "UI Text",
@@ -99,7 +100,8 @@
    "fieldtype": "Select",
    "in_standard_filter": 1,
    "label": "Not Applicable Reason",
-   "options": "\nNaming Series\nAcronym or Code\nRole Name\nMaster Data\nBrand or Product Name\nDeveloper Note\nPlaceholder Only\nManual"
+   "options": "\nNaming Series\nAcronym or Code\nRole Name\nMaster Data\nBrand or Product Name\nDeveloper Note\nPlaceholder Only\nManual",
+   "permlevel": 1
   },
   {
    "fieldname": "na_rule",
@@ -252,6 +254,56 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Translator",
+   "write": 1
+  },
+  {
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Localization Viewer"
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Localization Manager",
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Localization Translator"
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Localization Viewer"
   }
  ],
  "row_format": "Dynamic",

@@ -2,8 +2,16 @@ import frappe
 
 
 def after_install():
-	"""Seed the settings singleton. Tolerant of a first install where the
-	DocTypes are not on disk yet (the app is installed before they are created)."""
+	"""Create the roles and seed the settings singleton.
+
+	Tolerant of a first install where the DocTypes are not on disk yet (the app
+	is installed before they are created); the roles are made either way, since
+	the permission definitions refer to them.
+	"""
+	from lifegence_i18n.permissions import create_roles
+
+	create_roles()
+
 	if not frappe.db.exists("DocType", "I18n Settings"):
 		return
 
